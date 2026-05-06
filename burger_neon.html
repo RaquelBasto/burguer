@@ -1038,22 +1038,29 @@ function copyCoupon() {
   });
 }
 
-await fetch("/api/form", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
-    nps,
-    q2,
-    q3,
-    q4,
-    q5,
-    q6,
-    freeText: document.getElementById("free-text").value,
-    timestamp: new Date().toISOString()
-  })
-});
+async function submitSurvey() {
+  document.getElementById('survey-screen').style.display = 'none';
+  document.getElementById('thanks-screen').style.display = 'block';
+
+  console.log('Respostas da pesquisa:', answers);
+
+  await fetch("/api/form", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      nps: answers[1],
+      q2: answers[2],
+      q3: answers[3],
+      q4: answers[4],
+      q5: answers[5],
+      q6: answers[6],
+      freeText: document.getElementById("free-text").value,
+      timestamp: new Date().toISOString()
+    })
+  });
+}
 
 updateUI();
 </script>
