@@ -1044,7 +1044,7 @@ async function submitSurvey() {
 
   console.log('Respostas da pesquisa:', answers);
 
-  await fetch("/api/form.js", {
+  await fetch("/api/form", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
